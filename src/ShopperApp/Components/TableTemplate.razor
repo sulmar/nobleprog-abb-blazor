@@ -1,0 +1,49 @@
+﻿@typeparam TItem where TItem : Shopper.Domain.BaseEntity
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            @HeaderTemplate
+        </tr>
+
+    </thead>
+
+    <tbody>
+        @foreach (var item in Items)
+        {
+            <tr>
+                @RowTemplate(item)
+            </tr>
+        }
+    </tbody>
+
+    <tfoot>
+        @if (FooterTemplate is not null)
+        {
+            <tr>Count: @Items.Count()</tr>
+        }
+        else
+        {
+            @FooterTemplate
+        }
+
+    </tfoot>
+</table>
+
+@code {
+
+    [Parameter]
+    public IEnumerable<TItem> Items { get; set; }
+
+    [Parameter]
+    public RenderFragment HeaderTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment<TItem> RowTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment? FooterTemplate { get; set; }
+
+
+
+}

@@ -1,0 +1,26 @@
+﻿
+<div class="loader">
+
+    <em>@Message</em>
+
+    @if (ChildContent is not null)
+    {
+        <div>
+            @ChildContent
+        </div>
+    }
+
+</div>
+
+
+@code {
+
+    [Parameter]
+    public string Message { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+
+
+}

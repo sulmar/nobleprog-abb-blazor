@@ -1,0 +1,50 @@
+﻿@using Shopper.Domain;
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            @HeaderTemplate
+           
+        </tr>
+
+    </thead>
+
+    <tbody>
+        @foreach (var product in Products)
+        {
+            <tr>
+                @RowTemplate(product)
+            </tr>
+        }
+    </tbody>
+
+    <tfoot>
+        @if (FooterTemplate is not null)
+        {
+            <tr>Count: @Products.Count()</tr>
+        }
+        else
+        {
+            @FooterTemplate
+        }
+
+    </tfoot>
+</table>
+
+@code {
+
+    [Parameter]
+    public IEnumerable<Product> Products { get; set; }
+
+    [Parameter]
+    public RenderFragment HeaderTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment<Product> RowTemplate { get; set; }
+
+    [Parameter]
+    public RenderFragment? FooterTemplate { get; set; }
+
+
+
+}
