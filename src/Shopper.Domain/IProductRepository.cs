@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace Shopper.Domain;
 
-public interface IProductRepository
+
+
+public interface IEntityRepository<T>
 {
-    Task<IEnumerable<Product>> GetAllAsync();   
+    Task<IEnumerable<T>> GetAllAsync();
+    Task<T> GetById(int id);
+    Task UpdateAsync(T entity);
+    Task RemoveAsync(int id);
+}
+
+
+public interface IProductRepository : IEntityRepository<Product>
+{
+
 }

@@ -1,48 +1,43 @@
 ﻿@page "/products"
 @page "/produkty"
+@inject NavigationManager NavigationManager
 
-@inject HttpClient Http
 
 
 <h3>Product List</h3>
 
 @if (products == null)
 {
-                <LoadingComponent Message="Loading products...">
-                        <p>Lorem ipsum</p>
-                </LoadingComponent>
+    <LoadingComponent Message="Loading products...">
+        <p>Lorem ipsum</p>
+    </LoadingComponent>
 }
 else
 {
-        <TableTemplate Items="products" >
-            <HeaderTemplate>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-            </HeaderTemplate>
+    <TableTemplate Items="products">
+        <HeaderTemplate>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+        </HeaderTemplate>
 
-          @*  <RowTemplate>
-                        <td>@context.Name</td>
-                        <td>@context.Description</td>
-                        <td>@context.Price</td>
-            </RowTemplate>
-*@
-            <RowTemplate Context="product">
-                        <td>@product.Name</td>
-                        <td>@product.Description</td>
-                        <td>@product.Price</td>
-            </RowTemplate>
-            </TableTemplate>
-}
+        @*  <RowTemplate>
+    <td>@context.Name</td>
+    <td>@context.Description</td>
+    <td>@context.Price</td>
+    </RowTemplate>
+    *@
+        <RowTemplate Context="product">
+            <td>
+                @*  <button @onclick="()=>Edit(product.Id)" class="btn-link">
+            @product.Name
+            </button>*@
 
-@code {
-    private IEnumerable
+                <NavLink href=@($"/products/edit/{product.Id}")> @product.Name</NavLink>
 
-    <Product> products;
-
-
-    protected override async Task OnInitializedAsync()
-    {
-        products = await Http.GetFromJsonAsync<IEnumerable<Product>>("api/products");
-    }
+            </td>
+            <td>@product.Description</td>
+            <td>@product.Price</td>
+        </RowTemplate>
+    </TableTemplate>
 }

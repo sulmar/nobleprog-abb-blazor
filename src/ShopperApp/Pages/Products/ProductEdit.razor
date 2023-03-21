@@ -1,0 +1,67 @@
+﻿@page "/products/edit/{id:int}"
+@inject ProductApiService Api
+@inject NavigationManager NavigationManager
+
+<PageTitle>
+    Product @product?.Name
+</PageTitle>
+
+<h3>Product @product?.Name</h3>
+
+
+@if (product is not null)
+{
+    <EditForm Model="product" OnValidSubmit="HandleSubmit">
+
+        <DataAnnotationsValidator />
+        <FluentValidationValidator />
+
+        <ValidationSummary />
+
+        <div class="form-group">
+            <label>
+                Name:
+                <InputText @bind-Value="product.Name" class="form-control" />
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                Description:
+                <InputTextArea @bind-Value="product.Description" class="form-control" />
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label>
+                Price:
+                <InputNumber @bind-Value="product.Price" class="form-control" />
+            </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </EditForm>
+}
+
+  <button type="button" @onclick="HandleSubmit" class="btn btn-secondary">Second</button>
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    private Product product;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        product = await Api.GetById(Id);
+    }
+
+    private async Task HandleSubmit()
+    {
+        await Api.Update(product);
+
+        NavigationManager.NavigateTo("/products");
+    }
+
+}

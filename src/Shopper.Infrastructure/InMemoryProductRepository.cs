@@ -15,4 +15,22 @@ public class InMemoryProductRepository : IProductRepository
     {
         return Task.FromResult<IEnumerable<Product>>(_products.Values.ToList());
     }
+
+    public Task<Product> GetById(int id)
+    {
+        return Task.FromResult(_products[id]);  
+    }
+
+    public Task RemoveAsync(int id)
+    {
+         _products.Remove(id);
+
+        return Task.CompletedTask;
+    }
+
+    public async Task UpdateAsync(Product entity)
+    {
+        await RemoveAsync(entity.Id);
+        _products[entity.Id] = entity;
+    }
 }

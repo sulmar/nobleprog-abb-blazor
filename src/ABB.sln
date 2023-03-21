@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopperApp", "ShopperApp\ShopperApp.csproj", "{EA07C033-6905-4200-9040-3AE4A3E04B89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopperApp", "ShopperApp\ShopperApp.csproj", "{EA07C033-6905-4200-9040-3AE4A3E04B89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopper.Domain", "Shopper.Domain\Shopper.Domain.csproj", "{28FCD456-C77F-45AA-BAF6-973AFF051411}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopper.Domain", "Shopper.Domain\Shopper.Domain.csproj", "{28FCD456-C77F-45AA-BAF6-973AFF051411}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopper.Infrastructure", "Shopper.Infrastructure\Shopper.Infrastructure.csproj", "{852C49BE-2EAC-409C-A572-7CAC2CF63822}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopper.Infrastructure", "Shopper.Infrastructure\Shopper.Infrastructure.csproj", "{852C49BE-2EAC-409C-A572-7CAC2CF63822}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopper.Api", "Shopper.Api\Shopper.Api.csproj", "{D5276492-5FA7-4674-9DFB-C935A8959DB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopper.Api", "Shopper.Api\Shopper.Api.csproj", "{D5276492-5FA7-4674-9DFB-C935A8959DB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PwaBlazorApp", "PwaBlazorApp\PwaBlazorApp.csproj", "{EBC22F85-7B9D-43C7-94DC-B4B5B9984772}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D5276492-5FA7-4674-9DFB-C935A8959DB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5276492-5FA7-4674-9DFB-C935A8959DB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5276492-5FA7-4674-9DFB-C935A8959DB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBC22F85-7B9D-43C7-94DC-B4B5B9984772}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBC22F85-7B9D-43C7-94DC-B4B5B9984772}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBC22F85-7B9D-43C7-94DC-B4B5B9984772}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBC22F85-7B9D-43C7-94DC-B4B5B9984772}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
