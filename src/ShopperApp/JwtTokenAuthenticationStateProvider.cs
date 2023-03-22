@@ -47,8 +47,8 @@ public class JwtTokenAuthenticationStateProvider : AuthenticationStateProvider
                         ValidateAudience = false,
                         ValidateIssuer = false,
                         IssuerSigningKey = new SymmetricSecurityKey(key),
-                        //ClockSkew = TimeSpan.Zero,
-                        //ValidateLifetime = true
+                        ClockSkew = TimeSpan.Zero,
+                        ValidateLifetime = true
                     }, out var validatedToken);
 
                     var identity = new ClaimsIdentity(jwtToken.Claims, "JWT Token");
