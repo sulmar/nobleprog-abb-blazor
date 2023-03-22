@@ -1,5 +1,5 @@
 {
-  "name": "ShopperApp",
+  "name": "Shopper App",
   "short_name": "ShopperApp",
   "start_url": "./",
   "display": "standalone",
