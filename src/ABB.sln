@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopper.Api", "Shopper.Api\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PwaBlazorApp", "PwaBlazorApp\PwaBlazorApp.csproj", "{EBC22F85-7B9D-43C7-94DC-B4B5B9984772}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Api", "Auth.Api\Auth.Api.csproj", "{32823CD6-8E23-47F4-836C-20449BEA0CD8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{EBC22F85-7B9D-43C7-94DC-B4B5B9984772}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBC22F85-7B9D-43C7-94DC-B4B5B9984772}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBC22F85-7B9D-43C7-94DC-B4B5B9984772}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32823CD6-8E23-47F4-836C-20449BEA0CD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32823CD6-8E23-47F4-836C-20449BEA0CD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32823CD6-8E23-47F4-836C-20449BEA0CD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32823CD6-8E23-47F4-836C-20449BEA0CD8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

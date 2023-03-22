@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components;
 using Shopper.Domain;
 using ShopperApp.Services;
 using System.Net.Http.Json;
 
 namespace ShopperApp.Pages.Products;
 
+[Authorize]
 public partial class ProductList
 {
     [Inject]
