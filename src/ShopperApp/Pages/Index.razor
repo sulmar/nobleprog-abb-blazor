@@ -7,3 +7,17 @@
 Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+<CascadingValue Value="@message" Name="Message">
+    <CascadingValue Value="@alertStyle" Name="Style">
+        <ParentComponent />
+    </CascadingValue>
+</CascadingValue>
+
+
+
+@code {
+    private string message = "Hello World!";
+
+    private string alertStyle = "danger";
+}

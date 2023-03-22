@@ -1,0 +1,16 @@
+﻿<div class="alert alert-@AlertStyle">
+    @Message @CounterValue
+</div>
+
+@code {
+
+    [CascadingParameter(Name = "Message")]
+    public string Message { get; set; }
+
+    [CascadingParameter(Name = "Style")]
+    public string AlertStyle { get; set; }
+
+    [CascadingParameter]
+    private int CounterValue { get; set; }
+
+}

@@ -10,12 +10,21 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+<CascadingValue Value="@CounterKey" Name="Message">
+    <CascadingValue Value="@("info")" Name="Style">
+        <CascadingValue Value="@currentCount">
+            <ParentComponent />
+        </CascadingValue>
+    </CascadingValue>
+</CascadingValue>
+
 @code {
     private int currentCount = 0;
 
     private const string CounterKey = "count";
 
-   
+
+
 
     protected override async Task OnInitializedAsync()
     {
