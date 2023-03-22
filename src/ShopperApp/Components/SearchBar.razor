@@ -1,0 +1,29 @@
+﻿
+
+<div>
+    <label for="filter">Search:</label>
+    <input type="text" @bind-value="searchText" id="filter" @onkeyup="OnKeyUp" />
+</div>
+
+<button type="button" @onclick="Search">Search</button>
+
+@code {
+    private string searchText;
+
+    [Parameter]
+    public EventCallback<string> OnSearch { get; set; }
+
+    private async Task OnKeyUp(KeyboardEventArgs e)
+    {
+        if (e.Code == "Enter" || e.Code == "NumpadEnter")
+        {
+            await Search();
+        }
+    }
+
+    private async Task Search()
+    {
+        await OnSearch.InvokeAsync(searchText);
+    }
+
+}

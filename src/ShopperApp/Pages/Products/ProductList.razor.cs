@@ -20,6 +20,12 @@ public partial class ProductList
     private void Edit(int id)
     {
         NavigationManager.NavigateTo($"/products/edit/{id}");
+
+    }
+
+    private async Task SearchProducts(string searchText)
+    {
+        // TODO: search products by search text
     }
 
 }
