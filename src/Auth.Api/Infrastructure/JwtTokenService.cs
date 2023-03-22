@@ -8,6 +8,9 @@ namespace Auth.Api.Infrastructure;
 
 public class JwtTokenService : ITokenService
 {
+    private static Claim[] GetRoleClaims(string[] roles) => roles
+            .Select(role => new Claim(ClaimTypes.Role, role))
+            .ToArray();
 
     private static Claim[] GetClaims(UserIdentity userIdentity)
     {
@@ -27,9 +30,11 @@ public class JwtTokenService : ITokenService
     // dotnet add package System.IdentityModel.Tokens.Jwt
     public string Create(UserIdentity userIdentity)
     {
+        JwtSecurityTokenHandler.DefaultOutboundClaimTypeMap.Clear();
         var claims = GetClaims(userIdentity);
-
+        
         var identity = new ClaimsIdentity(claims);
+        identity.AddClaims(GetRoleClaims(userIdentity.Roles));
 
         var secretKey = "your-256-bit-secret";
         var key = Encoding.ASCII.GetBytes(secretKey);
