@@ -56,7 +56,7 @@ public class JwtTokenAuthenticationStateProvider : AuthenticationStateProvider
                 }
                 catch (Exception ex)
                 {
-                    throw;
+                    Console.WriteLine(ex.Message);
                     await LogoutAsync();
                 }
             }
