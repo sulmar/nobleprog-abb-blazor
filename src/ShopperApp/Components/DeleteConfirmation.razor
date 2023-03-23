@@ -1,0 +1,44 @@
+﻿@if (showPopup)
+{
+    <div class="modal fade show" style="display:block" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete Product</h4>
+                    <button type="button" class="btn-close" @onclick="Hide" data-dismiss="modal">&times;</button>
+
+                </div>
+
+                <div class="modal-body">
+                    @ChildContent
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" @onclick="Hide">Close</button>
+                    <button type="button" class="btn btn-danger" @onclick="Confirm">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private bool showPopup = false;
+
+    public void Show() => showPopup = true;
+    public void Hide() => showPopup = false;
+
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public EventCallback OnConfirmed { get; set; }
+
+    private async Task Confirm()
+    {
+        await OnConfirmed.InvokeAsync();
+    }
+
+}

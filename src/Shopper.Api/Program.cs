@@ -27,7 +27,7 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins(
             new string[] { "https://localhost:7065", "http://localhost:5063" });
-        policy.WithMethods(new string[] { "GET", "PUT" });
+        policy.WithMethods(new string[] { "GET", "PUT", "DELETE" });
         policy.AllowAnyHeader();
     });
 });
@@ -49,5 +49,7 @@ app.MapGet("/api/products", async (IProductRepository repository)
 app.MapGet("/api/products/{id:int}", async (int id, IProductRepository repository) => await repository.GetById(id));
 
 app.MapPut("/api/products/{id:int}", async(Product product, IProductRepository repository) => await repository.UpdateAsync(product));
+
+app.MapDelete("/api/products/{id:int}", async (int id, IProductRepository repository) => await repository.RemoveAsync(id));
 
 app.Run();

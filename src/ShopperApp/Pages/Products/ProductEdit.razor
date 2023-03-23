@@ -9,6 +9,10 @@
 <h3>Product @product?.Name</h3>
 
 
+<DeleteConfirmation @ref="deleteConfirmation" OnConfirmed="OnDeleteConfirmed">
+    <p>Are your sure delete <strong>@product.Name</strong>?</p>
+</DeleteConfirmation>
+
 @if (product is not null)
 {
     <EditForm Model="product" OnValidSubmit="HandleSubmit">
@@ -21,7 +25,7 @@
         <div class="form-group">
             <label>
                 Name:
-                <InputText @bind-Value="product.Name"  class="form-control" />
+                <InputText @bind-Value="product.Name" class="form-control" />
             </label>
         </div>
         <div class="form-group">
@@ -38,12 +42,20 @@
             </label>
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="btn-group" role="group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-danger" @onclick="RequestDelete">Delete</button>
+
+            <button type="button" class="btn btn-secondary" @onclick="HandleSubmit">Second</button>
+        </div>
+
+
+
 
     </EditForm>
 }
 
-  <button type="button" @onclick="HandleSubmit" class="btn btn-secondary">Second</button>
+
 
 @code {
 
@@ -61,6 +73,20 @@
     {
         await Api.Update(product);
 
+        NavigationManager.NavigateTo("/products");
+    }
+
+    private DeleteConfirmation deleteConfirmation;
+
+    private async Task RequestDelete()
+    {
+        deleteConfirmation.Show();
+
+    }
+
+    private async Task OnDeleteConfirmed()
+    {
+        await Api.Remove(Id);
         NavigationManager.NavigateTo("/products");
     }
 
