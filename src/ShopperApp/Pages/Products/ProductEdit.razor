@@ -67,6 +67,16 @@
     protected override async Task OnParametersSetAsync()
     {
         product = await Api.GetById(Id);
+
+    }
+
+    protected override void OnInitialized()
+    {
+        // get current url
+        string url = NavigationManager.Uri.ToString();
+
+        // get path only
+        var path = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
     }
 
     private async Task HandleSubmit()
