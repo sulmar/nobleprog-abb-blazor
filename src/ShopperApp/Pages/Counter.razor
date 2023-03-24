@@ -23,7 +23,7 @@
 
     private const string CounterKey = "count";
 
-
+    private const int MaxCount = 10;
 
 
     protected override async Task OnInitializedAsync()
@@ -34,6 +34,9 @@
     private async Task IncrementCount()
     {
         currentCount++;
+
+        if (currentCount > MaxCount)
+            throw new InvalidOperationException($"Over limit. Maximum count is {MaxCount}.");
 
         await LocalStorage.SetItemAsync<int>(CounterKey, currentCount);
     }
