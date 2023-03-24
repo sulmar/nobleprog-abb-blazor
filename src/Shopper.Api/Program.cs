@@ -10,7 +10,7 @@ builder.Services.AddSingleton<Faker<Product>, ProductFaker>();
 builder.Services.AddSingleton<IEnumerable<Product>>(sp =>
 {
     var faker = sp.GetRequiredService<Faker<Product>>();
-    return faker.Generate(100);
+    return faker.Generate(10_000);
 
     return new List<Product>()
     {

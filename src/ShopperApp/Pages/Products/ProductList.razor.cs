@@ -12,7 +12,7 @@ public partial class ProductList
     [Inject]
     public ProductApiService Api { get; set; }
 
-    private IEnumerable<Product> products;
+    private ICollection<Product> products;
 
     protected override async Task OnInitializedAsync()
     {

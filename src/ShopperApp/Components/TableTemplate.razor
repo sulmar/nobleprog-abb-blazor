@@ -9,12 +9,14 @@
     </thead>
 
     <tbody>
-        @foreach (var item in Items)
-        {
+        
+
+        <Virtualize Items="Items" Context="item" OverscanCount="50" SpacerElement="tr">
             <tr>
                 @RowTemplate(item)
             </tr>
-        }
+        </Virtualize>
+
     </tbody>
 
     <tfoot>
@@ -33,7 +35,7 @@
 @code {
 
     [Parameter]
-    public IEnumerable<TItem> Items { get; set; }
+    public ICollection<TItem> Items { get; set; }
 
     [Parameter]
     public RenderFragment HeaderTemplate { get; set; }
