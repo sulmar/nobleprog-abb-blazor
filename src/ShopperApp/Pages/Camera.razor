@@ -22,16 +22,19 @@
     private ElementReference canvasElement;
     private string errorMessage = "";
 
-    private Task<IJSObjectReference> moduleRef;
+    // private Task<IJSObjectReference> moduleRef;
+    private IJSObjectReference module;
 
-    const string jsModulePath = "./Pages/Camera.razor.js";    
+    const string jsModulePath = "./Pages/Camera.razor.js";
+
+    
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            moduleRef = JS.InvokeAsync<IJSObjectReference>("import", jsModulePath).AsTask();
-            var module = await moduleRef;
+            var moduleRef = JS.InvokeAsync<IJSObjectReference>("import", jsModulePath).AsTask();
+            module = await moduleRef;
 
             await module.InvokeVoidAsync("init", videoElement, DotNetObjectReference.Create(this));
         }
@@ -62,8 +65,6 @@
 
     private async Task<string> TakePhoto()
     {
-        var module = await JS.InvokeAsync<IJSObjectReference>("import", jsModulePath);
-
         await module.InvokeVoidAsync("capturePhoto", videoElement, canvasElement);
 
         var imageDataUrl = await module.InvokeAsync<string>("canvasToDataURL", canvasElement);
