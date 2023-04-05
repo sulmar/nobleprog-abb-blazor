@@ -22,6 +22,8 @@ public class JwtTokenService : ITokenService
             new Claim(ClaimTypes.Name, userIdentity.Username),
             new Claim(ClaimTypes.MobilePhone, userIdentity.Phone),
             new Claim(ClaimTypes.Email, userIdentity.Email),
+
+            new Claim("license", userIdentity.License)
         };
 
         return claims;

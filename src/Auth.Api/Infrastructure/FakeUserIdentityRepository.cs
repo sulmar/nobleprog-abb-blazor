@@ -13,12 +13,14 @@ public class FakeUserIdentityRepository : IUserIdentityRepository
         {
             ["john"] = new UserIdentity
             {
-                Username = "john", Email = "john@domain.com", Phone = "555001110"
+                Username = "john", Email = "john@domain.com", Phone = "555001110",
+                License = "silver"
             },
             ["kate"] = new UserIdentity
             {
                 Username = "kate", Email = "kate@domain.com", Phone = "555002222",
-                Roles = new[] {"developer" }
+                Roles = new[] {"developer" },
+                License = "gold"
             },
             ["bob"] = new UserIdentity {Username = "bob", Email = "bob@domain.com", Phone = "555111111"},
         };

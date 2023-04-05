@@ -51,6 +51,14 @@
             </NavLink>
         </div>
 
+        <AuthorizeView Policy="goldpartner">
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="extra">
+                    <span class="oi oi-plus" aria-hidden="true"></span>Extra
+                </NavLink>
+            </div>
+        </AuthorizeView>
+
         <AuthorizeView>
             <NotAuthorized>
                 <div class="nav-item px-3">
@@ -72,6 +80,8 @@
                 </div>
             </Authorized>
         </AuthorizeView>
+
+
 
 
     </nav>

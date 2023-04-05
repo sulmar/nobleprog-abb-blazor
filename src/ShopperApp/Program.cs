@@ -21,7 +21,15 @@ builder.Services.AddHttpClient<AuthApiService>(sp => sp.BaseAddress = new Uri("h
 // dotnet add packaged Blazored.LocalStorage
 builder.Services.AddBlazoredLocalStorage();
 
-builder.Services.AddAuthorizationCore();
+builder.Services.AddAuthorizationCore(options =>
+{
+    options.AddPolicy("GoldPartner", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        policy.RequireClaim("license", "gold");        
+    });
+});
+
 builder.Services.AddScoped<JwtTokenAuthenticationStateProvider>();
 builder.Services.AddScoped<AuthenticationStateProvider>(sp => sp.GetRequiredService<JwtTokenAuthenticationStateProvider>());
 
