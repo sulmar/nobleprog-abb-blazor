@@ -27,7 +27,7 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins(
             new string[] { "https://localhost:7065", "http://localhost:5063" });
-        policy.WithMethods(new string[] { "GET", "PUT", "DELETE" });
+        policy.WithMethods(new string[] { "GET", "PUT", "DELETE", "POST" });
         policy.AllowAnyHeader();
     });
 });
@@ -51,5 +51,28 @@ app.MapGet("/api/products/{id:int}", async (int id, IProductRepository repositor
 app.MapPut("/api/products/{id:int}", async(Product product, IProductRepository repository) => await repository.UpdateAsync(product));
 
 app.MapDelete("/api/products/{id:int}", async (int id, IProductRepository repository) => await repository.RemoveAsync(id));
+
+app.MapPost("/api/upload", async (IFormFile file) =>
+{
+    using var stream = File.OpenWrite(file.FileName);
+    await file.CopyToAsync(stream);
+
+    return Results.Ok(file.FileName);
+});
+
+app.MapPost("/api/uploadmany", async (IFormFileCollection files) =>
+{
+    var filenames = Array.Empty<string>();
+    foreach (var file in files)
+    {
+        using var stream = File.OpenRead(file.FileName);
+        await file.CopyToAsync(stream);
+
+        filenames.Append(file.FileName);
+    }
+
+    return Results.Ok(filenames);
+});
+
 
 app.Run();

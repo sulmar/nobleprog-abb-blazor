@@ -1,0 +1,87 @@
+﻿@page "/camera"
+@inject IJSRuntime JS
+@inject ProductApiService Api
+
+<h3>Camera</h3>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    @errorMessage
+}
+
+<video width="640" height="480" @ref="videoElement" autoplay></video>
+
+<button class="btn btn-primary" @onclick="TakeAndSendPhoto">Take and Send Photo</button>
+
+<canvas width="640" height="480" @ref="canvasElement"></canvas>
+
+
+@code {
+
+    private ElementReference videoElement;
+    private ElementReference canvasElement;
+    private string errorMessage = "";
+
+    private Task<IJSObjectReference> moduleRef;
+
+    const string jsModulePath = "./Pages/Camera.razor.js";    
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            moduleRef = JS.InvokeAsync<IJSObjectReference>("import", jsModulePath).AsTask();
+            var module = await moduleRef;
+
+            await module.InvokeVoidAsync("init", videoElement, DotNetObjectReference.Create(this));
+        }
+    }
+
+    [JSInvokable]
+    public void OnSuccess()
+    {
+        StateHasChanged();
+
+    }
+    [JSInvokable]
+    public void onFailure(string e)
+    {
+        errorMessage = e;
+        StateHasChanged();
+    }
+
+
+    private async Task TakeAndSendPhoto()
+    {
+        var imageDataUrl = await TakePhoto();
+
+        await Send(imageDataUrl);
+
+        StateHasChanged();
+    }
+
+    private async Task<string> TakePhoto()
+    {
+        var module = await JS.InvokeAsync<IJSObjectReference>("import", "./Pages/Camera.razor.js");
+
+        await module.InvokeVoidAsync("capturePhoto", videoElement, canvasElement);
+
+        var imageDataUrl = await module.InvokeAsync<string>("canvasToDataURL", canvasElement);
+
+        return imageDataUrl;
+
+        
+    }
+
+    private async Task Send(string content)
+    {
+        byte[] imageDataBytes = Convert.FromBase64String(content.Split(',')[1]);
+
+        using MemoryStream stream = new MemoryStream(imageDataBytes);
+
+        await Api.Upload(stream);
+
+    }
+
+
+}

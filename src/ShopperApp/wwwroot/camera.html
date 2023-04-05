@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Camera Access</title>
+  </head>
+  <body>
+    <video id="camera" autoplay></video>
+    <button id="take-photo">Take Photo</button>
+    <canvas id="canvas"></canvas>
+    
+    <script>
+      const video = document.querySelector('#camera');
+      const canvas = document.querySelector('#canvas');
+      const takePhotoButton = document.querySelector('#take-photo');
+      
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+          video.srcObject = stream;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+      
+      takePhotoButton.addEventListener('click', () => {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+        const image = canvas.toDataURL('image/png');
+        console.log(image);
+        sendPhoto(image);
+      });
+      
+      function sendPhoto(imageData) {
+        const apiUrl = 'https://localhost:7127/api/upload';
+        const formData = new FormData();
+        formData.append('file', imageData);
+        
+        fetch(apiUrl, {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => {
+          if (response.ok) {
+            console.log('Photo uploaded successfully');
+          } else {
+            console.log('Failed to upload photo');
+          }
+        })
+        .catch(error => {
+          console.log('Error:', error);
+        });
+      }
+    </script>
+  </body>
+</html>

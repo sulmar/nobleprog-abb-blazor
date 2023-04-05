@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PwaBlazorApp", "PwaBlazorAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.Api", "Auth.Api\Auth.Api.csproj", "{32823CD6-8E23-47F4-836C-20449BEA0CD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopper.Analytics", "Shopper.Analytics\Shopper.Analytics.csproj", "{A2BB6D6E-DD56-43B9-9952-B775C8ECB5C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopper.Analytics", "Shopper.Analytics\Shopper.Analytics.csproj", "{A2BB6D6E-DD56-43B9-9952-B775C8ECB5C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
