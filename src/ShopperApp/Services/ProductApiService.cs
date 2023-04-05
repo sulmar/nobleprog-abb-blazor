@@ -1,5 +1,4 @@
 ﻿using Shopper.Domain;
-using System.IO;
 using System.Net.Http.Json;
 namespace ShopperApp.Services;
 
