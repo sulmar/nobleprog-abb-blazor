@@ -62,7 +62,7 @@
 
     private async Task<string> TakePhoto()
     {
-        var module = await JS.InvokeAsync<IJSObjectReference>("import", "./Pages/Camera.razor.js");
+        var module = await JS.InvokeAsync<IJSObjectReference>("import", jsModulePath);
 
         await module.InvokeVoidAsync("capturePhoto", videoElement, canvasElement);
 
